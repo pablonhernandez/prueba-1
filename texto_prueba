@@ -1,0 +1,2 @@
+printf("Introduzca un numero");
+	scanf("%d",n)
