@@ -59,7 +59,8 @@ volatile uint16_t flagPulsado = 0;
 volatile uint32_t contadorAux = 0;
 volatile int regionCritica = 1;
 volatile uint16_t iteracion = 0;
-volatile uint16_t media = 0;
+volatile float media = 0;
+volatile uint64_t suma = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	if(GPIO_Pin == GPIO_PIN_0 && regionCritica == 0){
@@ -139,12 +140,12 @@ int main(void)
 	regionCritica = 1;
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, 1);
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 0);
-	HAL_Delay(5000);
+	HAL_Delay(2000);
 	flagPulsado = 0;
 
+	int i;
 	if(iteracion == 5){
-		uint32_t suma = 0;
-		for(int i; i<iteracion; i++){
+		for(i = 0; i<iteracion; i++){
 			suma += contador[i];
 		}
 		media = suma / 5;

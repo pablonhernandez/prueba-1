@@ -60,6 +60,7 @@ volatile uint32_t contadorAux = 0;
 volatile int regionCritica = 1;
 volatile uint16_t iteracion = 0;
 volatile uint16_t media = 0;
+volatile uint32_t suma = 0;
 
 #define DEBOUNCE_DELAY 300
 
@@ -147,9 +148,9 @@ int main(void)
   	HAL_Delay(5000);
   	flagPulsado = 0;
 
+  	int i;
   	if(iteracion == 5){
-  		uint32_t suma = 0;
-  		for(int i; i<iteracion; i++){
+  		for(i = 0; i<iteracion; i++){
   			suma += contador[i];
   		}
 		media = suma / 5;
